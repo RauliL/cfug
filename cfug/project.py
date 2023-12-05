@@ -17,7 +17,7 @@ class Project:
         path = Path.cwd()
 
         while str(path) != path.root:
-            if os.path.exists(os.path.join(path, ".cppfug")):
+            if os.path.exists(os.path.join(path, ".cfug")):
                 return cls(root_directory=str(path))
             path = path.parent
 
@@ -52,8 +52,8 @@ class Project:
         # Create the project directory.
         os.mkdir(self.root_directory)
 
-        # Create empty ".cppfug" marker file.
-        with open(os.path.join(self.root_directory, ".cppfug"), "w"):
+        # Create empty ".cfug" marker file.
+        with open(os.path.join(self.root_directory, ".cfug"), "w"):
             pass
 
         # Initialize git repository.

@@ -3,25 +3,25 @@ import os
 from click import ClickException
 
 
-class CppFugError(ClickException):
+class CFugError(ClickException):
     """
-    Base class for all CppFug related exceptions.
+    Base class for all CFug related exceptions.
     """
 
 
-class ProjectNotFoundError(CppFugError):
+class ProjectNotFoundError(CFugError):
     """
-    Exception that is thrown when user runs the `cppfug` command in a directory
-    that doesn't look like to be a CppFug project.
+    Exception that is thrown when user runs the `cfug` command in a directory
+    that doesn't look like to be a CFug project.
     """
 
     def __init__(self):
         super().__init__(
-            f"Could not find a '.cppfug' file in '{os.path.realname('.')}' or it's parent directories."
+            f"Could not find a '.cfug' file in '{os.path.realname('.')}' or it's parent directories."
         )
 
 
-class ProjectNotConfiguredError(CppFugError):
+class ProjectNotConfiguredError(CFugError):
     """
     Exception that is thrown when user attempts to run CMake commands on a
     project that hasn't been configured yet.
@@ -29,11 +29,11 @@ class ProjectNotConfiguredError(CppFugError):
 
     def __init__(self):
         super().__init__(
-            "Project has not been configured yet. Please run `cppfug configure` first."
+            "Project has not been configured yet. Please run `cfug configure` first."
         )
 
 
-class TemplateDoesNotExistError(CppFugError):
+class TemplateDoesNotExistError(CFugError):
     """
     Exception that is thrown when user attempts to initialize an project with
     a template that does not exist.

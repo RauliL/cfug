@@ -1,4 +1,4 @@
-# cppfug
+# CFug
 
 Utilities for C++ project management.
 
@@ -12,9 +12,9 @@ Utilities for C++ project management.
 
 ## Commands
 
-- `cppfug new`: Initializes new project. Currently only one project template
+- `cfug new`: Initializes new project. Currently only one project template
   exists which is meant to be used for header only libraries.
-- `cppfug configure`: Runs CMake configuration on the project.
-- `cppfug build`: Builds the project.
-- `cppfug test`: Runs test cases.
-- `cppfug clean`: Cleans all build files.
+- `cfug configure`: Runs CMake configuration on the project.
+- `cfug build`: Builds the project.
+- `cfug test`: Runs test cases.
+- `cfug clean`: Cleans all build files.

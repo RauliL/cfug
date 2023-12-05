@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cppfug"
+name = "cfug"
 version = "0.1.0"
 description = "C++ project management utilities."
 authors = ["Rauli Laine <rauli.laine@iki.fi>"]
@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.scripts]
-cppfug = "cppfug.__main__:main"
+cfug = "cfug.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
@@ -29,5 +29,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pytest.ini_options]
-addopts = "-vvv --black --cov=cppfug --cov-report=term-missing"
-testpaths = ["cppfug"]
+addopts = "-vvv --black --cov=cfug --cov-report=term-missing"
+testpaths = ["cfug"]
