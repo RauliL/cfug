@@ -6,6 +6,9 @@ authors = ["Rauli Laine <rauli.laine@iki.fi>"]
 license = "MIT"
 readme = "README.md"
 
+[tool.poetry.scripts]
+cppfug = "cppfug.__main__:main"
+
 [tool.poetry.dependencies]
 python = "^3.8.1"
 click = "^8.1.7"

@@ -8,7 +8,7 @@ from ..exceptions import TemplateDoesNotExistError
 
 class ProjectTemplate:
     @classmethod
-    def find(cls, name):
+    def find(cls, name: str) -> "ProjectTemplate":
         directory = os.path.realpath(
             os.path.join(os.path.realpath(__file__), "..", sanitize_filename(name))
         )
