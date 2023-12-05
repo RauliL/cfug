@@ -1,7 +1,9 @@
 import os
 
+from click import ClickException
 
-class CppFugError(Exception):
+
+class CppFugError(ClickException):
     """
     Base class for all CppFug related exceptions.
     """
