@@ -17,7 +17,7 @@ class ProjectNotFoundError(CFugError):
 
     def __init__(self):
         super().__init__(
-            f"Could not find a '.cfug' file in '{os.path.realname('.')}' or it's parent directories."
+            f"Could not find a '.cfug' file in '{os.path.realpath('.')}' or it's parent directories."
         )
 
 
