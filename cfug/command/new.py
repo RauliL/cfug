@@ -9,7 +9,10 @@ from ..project import Project
 
 @click.command(help="Initializes new project.")
 @click.option(
-    "--template", type=str, default="header-only", help="Which project template to use."
+    "--template",
+    type=str,
+    default="executable",
+    help="Which project template to use. Available options are: executable, header-only and library.",
 )
 @click.option(
     "--version",

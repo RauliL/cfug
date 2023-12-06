@@ -12,9 +12,9 @@ Utilities for C++ project management.
 
 ## Commands
 
-- `cfug new`: Initializes new project. By default header-only library template
-  is used, but this can be changed with `--template` argument. Available
-  templates are `header-only` and `library`.
+- `cfug new`: Initializes new project. By default executable template is used,
+  but this can be changed with `--template` argument. Available templates are
+  `executable`, `header-only` and `library`.
 - `cfug configure`: Runs CMake configuration on the project.
 - `cfug build`: Builds the project.
 - `cfug test`: Runs test cases.
