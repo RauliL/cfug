@@ -2,9 +2,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.11)
 
 PROJECT(
   {{ project.name|lower }}
-{% if project.version %}  VERSION {{ project.version }}{% endif %}
-{% if project.description %}  DESCRIPTION "{{ project.description }}"{% endif %}
-{% if project.homepage_url %}  HOMEPAGE_URL "{{ project.homepage_url }}"{% endif %}
+{% if version %}  VERSION {{ version }}{% endif %}
+{% if description %}  DESCRIPTION "{{ description }}"{% endif %}
+{% if homepage_url %}  HOMEPAGE_URL "{{ homepage_url }}"{% endif %}
   LANGUAGES C CXX
 )
 

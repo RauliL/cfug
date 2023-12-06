@@ -5,7 +5,7 @@ import sys
 
 from caseconvertor import camelcase
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from .exceptions import ProjectNotConfiguredError, ProjectNotFoundError
 from .template import ProjectTemplate
@@ -23,17 +23,8 @@ class Project:
 
         raise ProjectNotFoundError()
 
-    def __init__(
-        self,
-        root_directory: str,
-        version: Optional[str] = None,
-        description: Optional[str] = None,
-        homepage_url: Optional[str] = None,
-    ):
+    def __init__(self, root_directory: str):
         self.root_directory = root_directory
-        self.version = version
-        self.description = description
-        self.homepage_url = homepage_url
 
     @property
     def name(self) -> str:
@@ -44,10 +35,20 @@ class Project:
     def build_directory(self) -> str:
         return os.path.join(self.root_directory, "build")
 
-    def initialize(self, template_name: str):
-        # Find the template to use for the new project.
-        template = ProjectTemplate.find(template_name)
+    def create(
+        self,
+        template: ProjectTemplate,
+        version: Optional[str] = None,
+        description: Optional[str] = None,
+        homepage_url: Optional[str] = None,
+        license: Optional[Any] = None,
+        author: Optional[str] = "",
+        email: Optional[str] = "",
+    ):
         template.context["project"] = self
+        template.context["version"] = version
+        template.context["description"] = description
+        template.context["homepage_url"] = homepage_url
 
         # Create the project directory.
         os.mkdir(self.root_directory)
@@ -58,6 +59,11 @@ class Project:
 
         # Initialize git repository.
         pygit2.init_repository(self.root_directory)
+
+        # Render license, if one was given.
+        if license:
+            with open(os.path.join(self.root_directory, "LICENSE"), "w") as f:
+                f.write(license.render(name=author, email=email))
 
         # Install the template.
         template.install(self.root_directory)

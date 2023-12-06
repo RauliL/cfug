@@ -2,20 +2,18 @@ import os
 
 from jinja2 import Template
 from pathvalidate import sanitize_filename
-from typing import Any, Dict
-
-from ..exceptions import TemplateDoesNotExistError
+from typing import Any, Dict, Optional
 
 
 class ProjectTemplate:
     @classmethod
-    def find(cls, name: str) -> "ProjectTemplate":
+    def find(cls, name: str) -> Optional["ProjectTemplate"]:
         directory = os.path.realpath(
             os.path.join(os.path.realpath(__file__), "..", sanitize_filename(name))
         )
 
         if not os.path.isdir(directory):
-            raise TemplateDoesNotExistError(name)
+            return None
 
         return cls(directory=directory)
 
