@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "cfug"
-version = "0.1.0"
+version = "0.1.1"
 description = "C++ project management utilities."
 authors = ["Rauli Laine <rauli.laine@iki.fi>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/RauliL/cfug"
 classifiers = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
