@@ -26,6 +26,7 @@ from ..project import Project
     "--description",
     type=str,
     required=False,
+    default="",
     prompt="Description",
     help="Description of the project.",
 )
@@ -33,6 +34,8 @@ from ..project import Project
     "--homepage-url",
     type=str,
     required=False,
+    default="",
+    prompt="Homepage URL",
     help="Project's homepage URL.",
 )
 @click.argument("project-name")
