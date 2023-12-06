@@ -64,29 +64,25 @@ class Project:
 
         # TODO: Create initial commit like create-react-app does?
 
-    def configure(self):
+    def configure(self, *args):
         build_directory = self.build_directory
         if not os.path.isdir(build_directory):
             os.mkdir(build_directory)
 
         subprocess.run(
-            args=["cmake", ".."],
+            args=["cmake", "..", *args],
             stdout=sys.stdout,
             stderr=sys.stderr,
             cwd=build_directory,
         )
 
-    def run_make(self, task: Optional[str] = None):
+    def run_cmake(self, *args):
         build_directory = self.build_directory
         if not os.path.exists(os.path.join(build_directory, "Makefile")):
             raise ProjectNotConfiguredError()
 
-        args = ["make"]
-        if task:
-            args.append(task)
-
         subprocess.run(
-            args=args,
+            args=["cmake", *args],
             stdout=sys.stdout,
             stderr=sys.stderr,
             cwd=build_directory,

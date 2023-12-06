@@ -5,6 +5,16 @@ description = "C++ project management utilities."
 authors = ["Rauli Laine <rauli.laine@iki.fi>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/RauliL/cfug"
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: C++",
+  "Topic :: Software Development :: Build Tools",
+  "Typing :: Typed",
+]
 exclude = ["cfug/tests"]
 
 [tool.poetry.scripts]

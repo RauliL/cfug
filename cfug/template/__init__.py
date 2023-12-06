@@ -2,6 +2,7 @@ import os
 
 from jinja2 import Template
 from pathvalidate import sanitize_filename
+from typing import Any, Dict
 
 from ..exceptions import TemplateDoesNotExistError
 
@@ -20,7 +21,7 @@ class ProjectTemplate:
 
     def __init__(self, directory: str):
         self.directory = directory
-        self.context = {}
+        self.context: Dict[str, Any] = {}
 
     def install(self, target_directory: str):
         self._install_traverse(
