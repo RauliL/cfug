@@ -1,9 +1,9 @@
 import os
-import pygit2
+import pygit2  # type: ignore
 import subprocess
 import sys
 
-from caseconvertor import camelcase
+from caseconvertor import camelcase  # type: ignore
 from pathlib import Path
 from typing import Any, Optional
 

@@ -1,5 +1,5 @@
 import click
-import license
+import license  # type: ignore
 import os
 
 from pathlib import Path
