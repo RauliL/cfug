@@ -2,6 +2,7 @@ import click
 import license
 import os
 
+from pathlib import Path
 from pathvalidate import sanitize_filename
 from typing import Any, Optional
 
@@ -94,7 +95,7 @@ def new(
         if not email:
             email = click.prompt("Author's E-mail address")
 
-    Project(root_directory=os.path.realpath(project_name)).create(
+    Project(root_directory=Path(os.path.realpath(project_name))).create(
         template=template,
         version=version,
         description=description,

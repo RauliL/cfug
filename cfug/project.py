@@ -17,13 +17,13 @@ class Project:
         path = Path.cwd()
 
         while str(path) != path.root:
-            if os.path.exists(os.path.join(path, ".cfug")):
-                return cls(root_directory=str(path))
+            if path.joinpath(".cfug").exists():
+                return cls(root_directory=path)
             path = path.parent
 
         raise ProjectNotFoundError()
 
-    def __init__(self, root_directory: str):
+    def __init__(self, root_directory: Path):
         self.root_directory = root_directory
 
     @property
@@ -32,8 +32,8 @@ class Project:
         return f"{name[0].upper()}{name[1:]}"
 
     @property
-    def build_directory(self) -> str:
-        return os.path.join(self.root_directory, "build")
+    def build_directory(self) -> Path:
+        return self.root_directory.joinpath("build")
 
     def create(
         self,
@@ -45,16 +45,11 @@ class Project:
         author: Optional[str] = "",
         email: Optional[str] = "",
     ):
-        template.context["project"] = self
-        template.context["version"] = version
-        template.context["description"] = description
-        template.context["homepage_url"] = homepage_url
-
         # Create the project directory.
-        os.mkdir(self.root_directory)
+        self.root_directory.mkdir()
 
         # Create empty ".cfug" marker file.
-        with open(os.path.join(self.root_directory, ".cfug"), "w"):
+        with self.root_directory.joinpath(".cfug").open("w"):
             pass
 
         # Initialize git repository.
@@ -62,18 +57,24 @@ class Project:
 
         # Render license, if one was given.
         if license:
-            with open(os.path.join(self.root_directory, "LICENSE"), "w") as f:
+            with self.root_directory.joinpath("LICENSE").open("w") as f:
                 f.write(license.render(name=author, email=email))
 
         # Install the template.
-        template.install(self.root_directory)
-
-        # TODO: Create initial commit like create-react-app does?
+        template.install(
+            self.root_directory,
+            {
+                "project": self,
+                "version": version,
+                "description": description,
+                "homepage_url": homepage_url,
+            },
+        )
 
     def configure(self, *args):
         build_directory = self.build_directory
-        if not os.path.isdir(build_directory):
-            os.mkdir(build_directory)
+        if not build_directory.is_dir():
+            build_directory.mkdir()
 
         subprocess.run(
             args=["cmake", "..", *args],
@@ -84,7 +85,7 @@ class Project:
 
     def run_cmake(self, *args):
         build_directory = self.build_directory
-        if not os.path.exists(os.path.join(build_directory, "Makefile")):
+        if not build_directory.joinpath("Makefile").exists():
             raise ProjectNotConfiguredError()
 
         subprocess.run(
